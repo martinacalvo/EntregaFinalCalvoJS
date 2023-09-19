@@ -12,7 +12,8 @@ body {
   
   .productos {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
     margin: 2em 0;
   }
   
@@ -20,7 +21,8 @@ body {
     text-align: center;
     border: 1px solid #ccc;
     padding: 1em;
-    max-width: 200px;
+    width: calc(33.33% - 10px); 
+    margin-bottom: 20px; 
   }
   
   .producto img {
