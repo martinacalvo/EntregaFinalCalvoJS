@@ -1,141 +1,6 @@
-const dbProductos = [
-  {
-    id: 1,
-    nombre: "Aro NEW YORK",
-    precio: 3000,
-    imagen: "images/arito1.jpg",
-    tipo: "aritos"
-},
-{
-    id: 2,
-    nombre: "Aro ITALIA",
-    precio: 5000,
-    imagen: "images/arito2.jpg",
-    tipo: "aritos"
-},
-{
-    id: 3,
-    nombre: "Aro VENECIA",
-    precio: 600,
-    imagen: "images/arito3.jpg",
-    tipo: "aritos"
-},
-{
-    id: 4,
-    nombre: "Aro FRANCIA",
-    precio: 5000,
-    imagen: "images/arito4.jpg",
-    tipo: "aritos"
-},
-{
-  id: 5,
-  nombre: "Aro ARGENTINA",
-  precio: 7000,
-  imagen: "images/arito5.jpg",
-  tipo: "aritos"
-},
-{
-  id: 6,
-  nombre: "Aro GRECIA",
-  precio: 7000,
-  imagen: "images/arito6.jpg",
-  tipo: "aritos"
-},
-{
-  id: 7,
-  nombre: "Aro ROMA",
-  precio: 6000,
-  imagen: "images/arito7.jpg",
-  tipo: "aritos"
-},
-{
-  id: 8,
-  nombre: "Aro PRAGA",
-  precio: 6000,
-  imagen: "images/arito8.jpg",
-  tipo: "aritos"
-},
-{
-id: 9,
-nombre: "Aro INDONESIA",
-precio: 6000,
-imagen:"images/arito9.jpg",
-tipo: "aritos"
-},
-{
-  id: 10,
-  nombre: "Aro TULUM",
-  precio: 7000,
-  imagen: "images/arito13.jpg",
-  tipo: "aritos"
-},
-{
-  id: 11,
-  nombre: "Aro BALI",
-  precio: 6000,
-  imagen: "images/aritos14.jpg",
-  tipo: "aritos"
-},
-{
-  id: 12,
-  nombre: "Aro MALAGA",
-  precio: 3000,
-  imagen: "images/aritos15.jpg",
-  tipo: "aritos"
-},
-{
-id: 13,
-nombre: "Collar VIENA",
-precio: 6000,
-imagen:"images/collar.jpg",
-tipo: "collares"
-},
-{
-id: 14,
-nombre: "Collar SUIZA",
-precio: 6000,
-imagen:"images/collar1.jpg",
-tipo: "collares"
-},
-{
-id: 15,
-nombre: "Collar PANTERA",
-precio: 6000,
-imagen:"images/collar2.jpg",
-tipo: "collares"
-},
-{
-id: 16,
-nombre: "Collar COLONIA",
-precio: 6000,
-imagen:"images/collar4.jpg",
-tipo: "collares"
-},
-{
-id: 17,
-nombre: "Collar BAIL",
-precio: 6000,
-imagen:"images/collar5.jpg",
-tipo: "collares"
-},
-{
-id: 18,
-nombre: "Collar PREIN",
-precio: 6000,
-imagen:"images/collar6.jpg",
-tipo: "collares"
-},
-{
-id: 19,
-nombre: "Collar COLONIA",
-precio: 6000,
-imagen:"images/collar7.jpg",
-tipo: "collares"
-}
-]
-
 let carrito = [];
-
+let dbProductos = [];
+const baseUrl = "https://651ab79d340309952f0dbe05.mockapi.io"
 
 const productos = document.querySelectorAll(".productos")
 const carritoSelector = document.querySelector("#carrito")
@@ -145,24 +10,24 @@ function crearTemplate() {
     producto.innerHTML = "";
 
     dbProductos.forEach((productoItem) => {
-      const { id, nombre, precio, imagen } = productoItem;
+      const { id, nombre, precio, img, tipo } = productoItem;
       const productoTarjeta = `
         <div class="producto">
-          <img src="${imagen}" alt="" />
+          <img src="${img}" alt="" />
           <h2>${nombre}</h2>
           <p>Precio: $${precio}</p>
           <button class="botAgregar" id="${id}">Añadir al Carrito</button>
         </div>
       `;
-      if (producto.id == "aritos" && productoItem.tipo == "aritos") {
+      if (productoItem.tipo === "aritos" && producto.classList.contains("aritos")) {
         producto.innerHTML += productoTarjeta;
-      } else if (producto.id == "collares" && productoItem.tipo == "collares") {
+      } else if (productoItem.tipo === "collares" && producto.classList.contains("collares")) {
         producto.innerHTML += productoTarjeta;
       }
     });
   });
 }
-crearTemplate();
+
 document.addEventListener("click", (e) => {
   const botAgregar = document.querySelectorAll(".botAgregar");
   const botEliminar = document.querySelectorAll(".botEliminar");
@@ -172,6 +37,18 @@ document.addEventListener("click", (e) => {
       const id = parseInt(e.target.id);
       const producto = dbProductos.find((producto) => producto.id === id);
       agregarCarrito(producto);
+      Toastify({
+        text: "Agregaste un producto al carrito",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function () { } // Callback after click
+      }).showToast();
     }
   });
 
@@ -182,13 +59,26 @@ document.addEventListener("click", (e) => {
       const productoBusqueda = carrito.findIndex(
         (producto) => producto.id === parseInt(idSinEliminar)
       );
+      Toastify({
+        text: "Eliminaste producto al carrito",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function () { } // Callback after click
+      }).showToast();
       if (productoBusqueda !== -1) {
         eliminarDelCarrito(productoBusqueda);
       }
+
     }
   });
 });
-   
+
 function agregarCarrito(producto) {
   const prodbuscado = carrito.find((prodCarrito) => prodCarrito.id === producto.id);
   if (prodbuscado) {
@@ -233,5 +123,59 @@ document.addEventListener("DOMContentLoaded", () => {
   if (carritosSP) {
     carrito = JSON.parse(carritosSP);
     actualizarCarrito();
+  }
+});
+/*
+async function cargarProductosDesdeJSON() {
+  fetch("./aritos.json").then((respuesta) => {
+    if (!respuesta.ok) {
+      throw new Error('No se pudo cargar el archivo JSON');
+
+    }
+    return respuesta.json();
+  }).then((data) => {
+    dbProductos = data;
+    crearTemplate();
+  })
+    .catch((error) => {
+      console.error('Error al cargar los productos desde el JSON:', error);
+    })
+}
+cargarProductosDesdeJSON();*/
+
+const obtenerDatosDeJSON = async () => {
+  try {
+    // Ruta al archivo JSON en la carpeta del proyecto
+    const url = `${baseUrl}/aritos`;
+
+    // Realiza la solicitud para obtener el archivo JSON
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Error al obtener datos del archivo JSON');
+    }
+
+ 
+    const data = await response.json();
+
+    // Aquí guardamos los datos en un array
+    const dbProductos = Array.isArray(data) ? data : [data];
+
+    return dbProductos;
+  } catch (error) {
+    console.error('Error:', error.message);
+    throw error;
+  }
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    dbProductos = await obtenerDatosDeJSON();
+    
+    crearTemplate();
+
+    console.log(dbProductos)
+  } catch (error) {
+    console.error('Error:', error.message);
   }
 });

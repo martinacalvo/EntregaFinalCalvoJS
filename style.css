@@ -16,7 +16,18 @@ body {
     justify-content: space-between; 
     margin: 2em 0;
   }
-  
+  .aritos {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    margin: 2em 0;
+  }
+  .collares {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    margin: 2em 0;
+  }
   .producto {
     text-align: center;
     border: 1px solid #ccc;

@@ -1,0 +1,135 @@
+[
+    {
+      "id": 1,
+      "nombre": "Aro NEW YORK",
+      "precio": 3000,
+      "imagen": "images/arito1.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 2,
+      "nombre": "Aro ITALIA",
+      "precio": 5000,
+      "imagen": "images/arito2.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 3,
+      "nombre": "Aro VENECIA",
+      "precio": 600,
+      "imagen": "images/arito3.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 4,
+      "nombre": "Aro FRANCIA",
+      "precio": 5000,
+      "imagen": "images/arito4.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 5,
+      "nombre": "Aro ARGENTINA",
+      "precio": 7000,
+      "imagen": "images/arito5.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 6,
+      "nombre": "Aro GRECIA",
+      "precio": 7000,
+      "imagen": "images/arito6.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 7,
+      "nombre": "Aro ROMA",
+      "precio": 6000,
+      "imagen": "images/arito7.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 8,
+      "nombre": "Aro PRAGA",
+      "precio": 6000,
+      "imagen": "images/arito8.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 9,
+      "nombre": "Aro INDONESIA",
+      "precio": 6000,
+      "imagen": "images/arito9.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 10,
+      "nombre": "Aro TULUM",
+      "precio": 7000,
+      "imagen": "images/arito13.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 11,
+      "nombre": "Aro BALI",
+      "precio": 6000,
+      "imagen": "images/aritos14.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 12,
+      "nombre": "Aro MALAGA",
+      "precio": 3000,
+      "imagen": "images/aritos15.jpg",
+      "tipo": "aritos"
+    },
+    {
+      "id": 13,
+      "nombre": "Collar VIENA",
+      "precio": 6000,
+      "imagen": "images/collar.jpg",
+      "tipo": "collares"
+    },
+    {
+      "id": 14,
+      "nombre": "Collar SUIZA",
+      "precio": 6000,
+      "imagen": "images/collar1.jpg",
+      "tipo": "collares"
+    },
+    {
+      "id": 15,
+      "nombre": "Collar PANTERA",
+      "precio": 6000,
+      "imagen": "images/collar2.jpg",
+      "tipo": "collares"
+    },
+    {
+      "id": 16,
+      "nombre": "Collar COLONIA",
+      "precio": 6000,
+      "imagen": "images/collar4.jpg",
+      "tipo": "collares"
+    },
+    {
+      "id": 17,
+      "nombre": "Collar BAIL",
+      "precio": 6000,
+      "imagen": "images/collar5.jpg",
+      "tipo": "collares"
+    },
+    {
+      "id": 18,
+      "nombre": "Collar PREIN",
+      "precio": 6000,
+      "imagen": "images/collar6.jpg",
+      "tipo": "collares"
+    },
+    {
+      "id": 19,
+      "nombre": "Collar COLONIA",
+      "precio": 6000,
+      "imagen": "images/collar7.jpg",
+      "tipo": "collares"
+    }
+  ]
