@@ -5,15 +5,16 @@ const baseUrl = "https://651ab79d340309952f0dbe05.mockapi.io"
 const productos = document.querySelectorAll(".productos")
 const carritoSelector = document.querySelector("#carrito")
 
+
 function crearTemplate() {
   productos.forEach((producto) => {
     producto.innerHTML = "";
 
     dbProductos.forEach((productoItem) => {
-      const { id, nombre, precio, img, tipo } = productoItem;
+      const { id, nombre, precio, imagen, tipo } = productoItem;
       const productoTarjeta = `
         <div class="producto">
-          <img src="${img}" alt="" />
+          <img src="${imagen}" alt="" />
           <h2>${nombre}</h2>
           <p>Precio: $${precio}</p>
           <button class="botAgregar" id="${id}">Añadir al Carrito</button>
@@ -98,7 +99,7 @@ function eliminarDelCarrito(index) {
 }
 
 function actualizarCarrito() {
-  // Actualizar la lista de productos en el carrito en el DOM
+
   const carritoSelector = document.querySelector("#carrito");
   carritoSelector.innerHTML = "";
 
@@ -115,7 +116,7 @@ function actualizarCarrito() {
     carritoSelector.appendChild(productoCarrito);
   });
 
-  // Actualizar el almacenamiento local
+
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -125,30 +126,14 @@ document.addEventListener("DOMContentLoaded", () => {
     actualizarCarrito();
   }
 });
-/*
-async function cargarProductosDesdeJSON() {
-  fetch("./aritos.json").then((respuesta) => {
-    if (!respuesta.ok) {
-      throw new Error('No se pudo cargar el archivo JSON');
 
-    }
-    return respuesta.json();
-  }).then((data) => {
-    dbProductos = data;
-    crearTemplate();
-  })
-    .catch((error) => {
-      console.error('Error al cargar los productos desde el JSON:', error);
-    })
-}
-cargarProductosDesdeJSON();*/
 
 const obtenerDatosDeJSON = async () => {
   try {
-    // Ruta al archivo JSON en la carpeta del proyecto
+
     const url = `${baseUrl}/aritos`;
 
-    // Realiza la solicitud para obtener el archivo JSON
+
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -158,7 +143,7 @@ const obtenerDatosDeJSON = async () => {
  
     const data = await response.json();
 
-    // Aquí guardamos los datos en un array
+
     const dbProductos = Array.isArray(data) ? data : [data];
 
     return dbProductos;
@@ -179,3 +164,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Error:', error.message);
   }
 });
+
+
+const productoCarrito = document.createElement("li");
+productoCarrito.className = "producto-carrito";
+const productoInfo = document.createElement("div");
+productoInfo.className = "producto-info";
+productoInfo.innerHTML = `${nombre} - $${precio}`;
+const cantidadInfo = document.createElement("div");
+cantidadInfo.className = "cantidad-info";
+cantidadInfo.textContent = `Cantidad: ${cantidad}`;
+const botonEliminar = document.createElement("button");
+botonEliminar.className = "botEliminar";
+botonEliminar.id = `Eliminar${id}`;
+botonEliminar.textContent = "Eliminar";
+productoCarrito.appendChild(productoInfo);
+productoCarrito.appendChild(cantidadInfo);
+productoCarrito.appendChild(botonEliminar);
+carritoSelector.appendChild(productoCarrito);
+
+function calcularTotal() {
+  let total = 0;
+  carrito.forEach((producto) => {
+    total += producto.precio * producto.cantidad;
+  });
+  return total;
+}
+function actualizarCarrito() {
+
+  const carritoSelector = document.querySelector("#carrito");
+  carritoSelector.innerHTML = "";
+
+  carrito.forEach((producto) => {
+    const { id, nombre, precio, cantidad } = producto;
+
+    const productoCarrito = document.createElement("li");
+    productoCarrito.className = "producto-carrito";
+    productoCarrito.innerHTML = `${nombre} - $${precio} - Cantidad: ${cantidad}`;
+
+    const botonEliminar = document.createElement("button");
+    botonEliminar.className = "botEliminar";
+    botonEliminar.id = `Eliminar${id}`;
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.addEventListener("click", () => eliminarProductoDelCarrito(id));
+
+    productoCarrito.appendChild(botonEliminar);
+    carritoSelector.appendChild(productoCarrito);
+  });
+
+
+  const total = calcularTotal();
+  const totalElement = document.createElement("div");
+  totalElement.className = "total";
+  totalElement.textContent = `Total: $${total}`;
+  carritoSelector.appendChild(totalElement);
+
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}Storage.setItem("carrito", JSON.stringify(carrito));
+
+function procederAlPago() {
+  const total = calcularTotal();
+  if (total > 0) {
+    window.location.href = "pagina_de_pago.html";
+  } else {
+    alert("El carrito está vacío. Agrega productos antes de pagar.");
+  }
+}

@@ -74,3 +74,47 @@ body {
     margin: 0;
     padding: 0;
   }
+
+  .producto {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin: 0.5em; /* Espacio entre productos */
+    flex: 1; /* Distribuir productos uniformemente en el contenedor */
+    max-width: calc(33.33% - 1em); /* Ancho máximo para tres columnas */
+    background-color: #fff; /* Fondo blanco para tarjetas de producto */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+  
+  .producto-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  .producto img {
+    max-width: 100%;
+  }
+  .producto-carrito {
+    display: flex;
+    align-items: center; /* Centrar verticalmente los elementos */
+    padding: 0.5em 0;
+    border-bottom: 1px solid #ccc; /* Separador entre elementos del carrito */
+  }
+  
+  .producto-info {
+    flex: 1; /* Ocupa todo el espacio restante en el contenedor */
+  }
+  
+  .cantidad-info {
+    margin-right: 10px; /* Espacio entre "Cantidad" y el botón "Eliminar" */
+  }
+  
+  .botEliminar {
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+  }
